@@ -44,6 +44,7 @@ const dealTopCard = () => {
   const topCard = cardsSourceArray.deck[0]
   document.querySelector('.dealt-card').textContent = topCard
   console.log(topCard)
+  cardsSourceArray.deck.shift()
 }
 
 document.addEventListener('DOMContentLoaded', main)
