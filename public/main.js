@@ -1,49 +1,49 @@
-const cardRanksArray = [
-  'Ace',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '10',
-  'Jack',
-  'Queen',
-  'King'
-]
+class Deck {
+  constructor() {
+    this.deck = []
+    const cardRanks = [
+      'Ace',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      'Jack',
+      'Queen',
+      'King'
+    ]
 
-const cardSuitsArray = [' of Clubs', ' of Diamonds', ' of Hearts', ' of Spades']
+    const cardSuits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
 
-const cardsSourceArray = [
-  'Ace of Spades',
-  '2 of Spades',
-  '3 of Hearts',
-  'King of Clubs',
-  '10 of Diamonds',
-  'Queen of Clubs'
-]
+    for (const suit in cardSuits) {
+      for (const rank in cardRanks) {
+        this.deck.push(`${cardRanks[rank]} of ${cardSuits[suit]}`)
+      }
+    }
+  }
+}
 
-let topCardCounter = 0
+const cardsSourceArray = new Deck()
 
 const main = () => {
-  for (let i = cardsSourceArray.length - 1; i > 0; i--) {
+  for (let i = cardsSourceArray.deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * i)
-    const firstArray = cardsSourceArray[i]
-    const secondArray = cardsSourceArray[j]
-    cardsSourceArray[i] = secondArray
-    cardsSourceArray[j] = firstArray
+    const firstArray = cardsSourceArray.deck[i]
+    const secondArray = cardsSourceArray.deck[j]
+    cardsSourceArray.deck[i] = secondArray
+    cardsSourceArray.deck[j] = firstArray
   }
-  console.log(cardsSourceArray)
+  console.log(cardsSourceArray.deck)
 }
 
 const dealTopCard = () => {
-  for (let i = 0; i < cardsSourceArray.length; i++) {
-    const topCard = cardsSourceArray[i]
-    document.querySelector('.dealt-card').textContent = topCard
-    console.log(topCard)
-  }
+  const topCard = cardsSourceArray.deck[0]
+  document.querySelector('.dealt-card').textContent = topCard
+  console.log(topCard)
 }
 
 document.addEventListener('DOMContentLoaded', main)
